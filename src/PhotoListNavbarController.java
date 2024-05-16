@@ -1,8 +1,6 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.UUID;
 
 public class PhotoListNavbarController {
     PhotoListNavbarView photoListNavbarView;
@@ -36,39 +34,31 @@ public class PhotoListNavbarController {
 
     void choosePhotos() {
         int response = this.photoListNavbarView.fileChooser.showSaveDialog(null);
+            if (response == JFileChooser.APPROVE_OPTION) {
+                File file = this.photoListNavbarView.fileChooser.getSelectedFile();
 
-//        try {
-//            if (response == JFileChooser.APPROVE_OPTION) {
-//                File file = this.photoListNavbarView.fileChooser.getSelectedFile();
-//                System.out.println(file.getName());
-//                BufferedImage image = ImageIO.read(file);
-//                String base64String = Utils.encodeToBase64(image, Utils.getFileExtension(file.getName()));
-//                System.out.println("Base64 String: " + base64String);
-//            } else {
-//                System.out.println("Wrong file");
-//            }
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+                FileOutputStream out = null;
+                FileInputStream in = null;
+                int cursor;
 
-//        if (response == JFileChooser.APPROVE_OPTION) {
-//            File fileToSave = this.photoListNavbarView.fileChooser.getSelectedFile();
-//
-//            // Ensure the file has the correct extension
-//            if (!fileToSave.getName().toLowerCase().endsWith(".png")) {
-//                fileToSave = new File(fileToSave.getAbsolutePath() + ".png");
-//            }
-//
-//            image = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
-//
-//            // Write the image to the selected file
-//            try {
-//                ImageIO.write(image, Utils.getFileExtension(), fileToSave);
-//                JOptionPane.showMessageDialog(this, "Image saved successfully!");
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//                JOptionPane.showMessageDialog(this, "An error occurred while saving the image.", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
+                String uuid = UUID.randomUUID().toString();
+
+                try{
+                    in = new FileInputStream(file);
+                    out = new FileOutputStream("photos/" + uuid + Utils.getFileExtension(file.getName()));
+                    while((cursor = in.read())!=-1){
+                        out.write(cursor);
+                    }
+
+                    in.close();
+                    out.close();
+
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                System.out.println("Wrong file");
+            }
     }
 }

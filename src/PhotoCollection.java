@@ -4,6 +4,7 @@ import java.util.UUID;
 public class PhotoCollection {
     String name;
     String id;
+    Timestamp createdAt;
 
     @Override
     public String toString() {
@@ -14,11 +15,11 @@ public class PhotoCollection {
                 '}';
     }
 
-    Timestamp createdAt;
+
 
     PhotoCollection(String name) {
         this.name = name;
-        id = UUID.randomUUID().toString();
-        createdAt = new Timestamp(System.currentTimeMillis());
+        this.id = UUID.randomUUID().toString();
+        this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 }
