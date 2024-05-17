@@ -1,12 +1,22 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toCollection;
+
 final public class State {
     private static ArrayList<PhotoCollection> collections = new ArrayList<>();
     private static PhotoCollection activeCollection = null;
+
+    private static ArrayList<Photo> photos = new ArrayList<>();
 
     static S30208Leshchenko frame;
     static AsideView asideView;
@@ -55,4 +65,26 @@ final public class State {
         State.activeCollection = collection;
     }
 
+    static ArrayList<Photo> getPhotos() {
+        return State.photos;
+    }
+
+    static ArrayList<Photo> getPhotos(String collectionId) {
+        return State.photos.stream()
+                .filter(photo -> photo.collectionIds.contains(collectionId))
+                .collect(toCollection(ArrayList::new));
+    }
+
+    static Photo addPhoto(String id, File file) {
+        try {
+            BufferedImage bufferedPhoto = ImageIO.read(file);
+            Dimension size = new Dimension(bufferedPhoto.getWidth(), bufferedPhoto.getHeight());
+            Photo photo = new Photo(id, size, FileManager.getFileExtension(file.getName()));
+            State.photos.add(photo);
+            return photo;
+        } catch (IOException error) {
+            JOptionPane.showMessageDialog(State.frame,"Something went wrong");
+        }
+        return null;
+    }
 }

@@ -1,6 +1,8 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.UUID;
 
 public class PhotoListNavbarController {
     PhotoListNavbarView photoListNavbarView;
@@ -13,7 +15,7 @@ public class PhotoListNavbarController {
 
     void setActions() {
         this.photoListNavbarView.deleteCollectionButton.addActionListener(_ -> this.deleteCollection());
-        this.photoListNavbarView.importPhotosButton.addActionListener(_ -> this.choosePhotos());
+        this.photoListNavbarView.importPhotosButton.addActionListener(_ -> this.choosePhoto());
     }
 
     void deleteCollection() {
@@ -23,7 +25,7 @@ public class PhotoListNavbarController {
                 JOptionPane.YES_NO_OPTION
         );
 
-        if(choice != 0) return;
+        if (choice != 0) return;
 
         State.removeCollection(State.getActiveCollection().id);
         State.setActiveCollection(null);
@@ -32,33 +34,15 @@ public class PhotoListNavbarController {
         this.photoListNavbarView.renderActiveCollectionDetails();
     }
 
-    void choosePhotos() {
+    void choosePhoto() {
         int response = this.photoListNavbarView.fileChooser.showSaveDialog(null);
-            if (response == JFileChooser.APPROVE_OPTION) {
-                File file = this.photoListNavbarView.fileChooser.getSelectedFile();
-
-                FileOutputStream out = null;
-                FileInputStream in = null;
-                int cursor;
-
-                String uuid = UUID.randomUUID().toString();
-
-                try{
-                    in = new FileInputStream(file);
-                    out = new FileOutputStream("photos/" + uuid + Utils.getFileExtension(file.getName()));
-                    while((cursor = in.read())!=-1){
-                        out.write(cursor);
-                    }
-
-                    in.close();
-                    out.close();
-
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                System.out.println("Wrong file");
-            }
+        if (response == JFileChooser.APPROVE_OPTION) {
+            File file = this.photoListNavbarView.fileChooser.getSelectedFile();
+            String newPhotoId = FileManager.uploadFile(file);
+            State.addPhoto(newPhotoId, file);
+            System.out.println(State.getPhotos());
+        } else {
+            JOptionPane.showMessageDialog(State.frame, "Something went wrong");
+        }
     }
 }
