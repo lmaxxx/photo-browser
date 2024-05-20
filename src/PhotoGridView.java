@@ -13,7 +13,6 @@ public class PhotoGridView extends JPanel {
     Dimension gridCellSize = new Dimension(315, 220);
 
     PhotoGridView() {
-        Controllers.photoGridController = new PhotoGridController(this);
         Views.photoGridView = this;
 
         setLayout(new BoxLayout (this, BoxLayout.Y_AXIS));
@@ -59,7 +58,7 @@ public class PhotoGridView extends JPanel {
                     imageLabel.setIcon(imageIcon);
                     imageLabel.addMouseListener(new MouseAdapter() {
                         public void mouseClicked(MouseEvent e) {
-                            Controllers.photoGridController.setActivePhoto(photo);
+                            Controllers.photoEditorController.setActivePhoto(photo);
                         }
                     });
                 }
