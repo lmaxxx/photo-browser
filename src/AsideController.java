@@ -27,17 +27,19 @@ public class AsideController {
 
 
         this.asideView.renderCollectionButtons();
-        State.photoListNavbarView.renderActiveCollectionDetails();
+        State.wrapperNavbarView.renderActiveCollectionDetails();
+        Controllers.photoGridController.updatePhotoGrid();
     }
 
     void removeActiveCollection() {
         State.setActiveCollection(null);
-        State.photoListNavbarView.renderActiveCollectionDetails();
+        State.wrapperNavbarView.renderActiveCollectionDetails();
+        Controllers.photoGridController.updatePhotoGrid();
     }
 
     void setActiveCollection(PhotoCollection collection) {
         State.setActiveCollection(collection);
-        State.photoListNavbarView.renderActiveCollectionDetails();
-
+        State.wrapperNavbarView.renderActiveCollectionDetails();
+        Controllers.photoGridController.updatePhotoGrid();
     }
 }

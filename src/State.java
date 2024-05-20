@@ -6,9 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toCollection;
 
@@ -22,8 +19,9 @@ final public class State {
     static AsideView asideView;
     static MainView mainView;
     static SearchBarView searchBarView;
-    static PhotoListView photoListView;
-    static PhotoListNavbarView photoListNavbarView;
+    static WrapperView wrapperView;
+    static WrapperNavbarView wrapperNavbarView;
+    static PhotoGridView photoGridView;
 
     static String appFontName = "Calibri";
 
@@ -44,13 +42,10 @@ final public class State {
         return null;
     }
 
-    static void clearCollections() {
-        State.collections.clear();
-    }
-
     static void removeCollection(String collectionId) {
         for (int i = 0; i < State.collections.size(); i++) {
             if(State.collections.get(i).id.equals(collectionId)) {
+                State.removePhotosFromCollection(collectionId);
                 State.collections.remove(i);
                 break;
             }
@@ -67,6 +62,12 @@ final public class State {
 
     static ArrayList<Photo> getPhotos() {
         return State.photos;
+    }
+
+    static void removePhotosFromCollection(String collectionId) {
+        State.photos = State.photos.stream()
+                .filter(photo -> !photo.collectionIds.contains(collectionId))
+                .collect(toCollection(ArrayList::new));
     }
 
     static ArrayList<Photo> getPhotos(String collectionId) {

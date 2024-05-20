@@ -1,4 +1,5 @@
 public class Controllers {
     static AsideController asideController;
-    static PhotoListNavbarController photoListNavbarController;
+    static WrapperNavbarController wrapperNavbarController;
+    static PhotoGridController photoGridController;
 }

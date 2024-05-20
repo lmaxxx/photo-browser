@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class MainView extends JPanel {
+public class MainView extends JPanel{
     SearchBarView searchBarView;
-    PhotoListView photoListView;
+    WrapperView wrapperView;
 
     MainView() {
         setPreferredSize(new Dimension(1000, 700));
@@ -15,12 +15,12 @@ public class MainView extends JPanel {
 
     void initComponents() {
         this.searchBarView = new SearchBarView();
-        this.photoListView = new PhotoListView();
+        this.wrapperView = new WrapperView();
     }
 
     void render() {
         add(this.searchBarView, BorderLayout.NORTH);
-        add(this.photoListView, BorderLayout.CENTER);
+        add(this.wrapperView, BorderLayout.CENTER);
     }
 
 }

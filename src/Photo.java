@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Photo {
     String id;
     String title;
+    String description;
     Dimension size;
     Timestamp createdAt;
     String extension;
@@ -15,7 +16,9 @@ public class Photo {
         this.size = size;
         this.createdAt = new Timestamp(System.currentTimeMillis());
         this.extension = extension;
-        collectionIds.add(State.getActiveCollection().id);
+        if(State.getActiveCollection() != null) {
+            this.collectionIds.add(State.getActiveCollection().id);
+        }
     }
 
     @Override
@@ -23,6 +26,7 @@ public class Photo {
         return "Photo{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
                 ", size=" + size +
                 ", createdAt=" + createdAt +
                 ", extension='" + extension + '\'' +
