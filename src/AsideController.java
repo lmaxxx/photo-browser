@@ -15,7 +15,7 @@ public class AsideController {
     }
 
     void createNewCollection() {
-        String name = JOptionPane.showInputDialog(State.frame, "Enter new collection name");
+        String name = JOptionPane.showInputDialog(Views.frame, "Enter new collection name");
 
         if (name == null || name.isEmpty()) return;
 
@@ -27,19 +27,19 @@ public class AsideController {
 
 
         this.asideView.renderCollectionButtons();
-        State.wrapperNavbarView.renderActiveCollectionDetails();
+        Views.wrapperNavbarView.renderActiveCollectionDetails();
         Controllers.photoGridController.updatePhotoGrid();
     }
 
     void removeActiveCollection() {
         State.setActiveCollection(null);
-        State.wrapperNavbarView.renderActiveCollectionDetails();
+        Views.wrapperNavbarView.renderActiveCollectionDetails();
         Controllers.photoGridController.updatePhotoGrid();
     }
 
     void setActiveCollection(PhotoCollection collection) {
         State.setActiveCollection(collection);
-        State.wrapperNavbarView.renderActiveCollectionDetails();
+        Views.wrapperNavbarView.renderActiveCollectionDetails();
         Controllers.photoGridController.updatePhotoGrid();
     }
 }

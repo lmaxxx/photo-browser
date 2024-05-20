@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class SearchBarView extends JPanel{
     SearchBarView() {
-        State.searchBarView = this;
+        Views.searchBarView = this;
         setPreferredSize(new Dimension(1000, 50));
         Border rightSideBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(204,204,204));
         setBorder(rightSideBorder);

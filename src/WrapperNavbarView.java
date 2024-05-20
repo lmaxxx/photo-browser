@@ -9,7 +9,7 @@ public class WrapperNavbarView extends JPanel {
     JFileChooser fileChooser;
 
     WrapperNavbarView() {
-        State.wrapperNavbarView = this;
+        Views.wrapperNavbarView = this;
 
         setLayout(new BorderLayout());
 

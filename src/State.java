@@ -14,78 +14,77 @@ final public class State {
     private static PhotoCollection activeCollection = null;
 
     private static ArrayList<Photo> photos = new ArrayList<>();
-
-    static S30208Leshchenko frame;
-    static AsideView asideView;
-    static MainView mainView;
-    static SearchBarView searchBarView;
-    static WrapperView wrapperView;
-    static WrapperNavbarView wrapperNavbarView;
-    static PhotoGridView photoGridView;
+    private static Photo activePhoto = null;
 
     static String appFontName = "Calibri";
 
     static PhotoCollection createCollection(String name) {
         PhotoCollection collection = new PhotoCollection(name);
-        State.collections.add(collection);
+        collections.add(collection);
         return collection;
     }
 
     static ArrayList<PhotoCollection> getCollections() {
-        return State.collections;
+        return collections;
     }
 
     static LocalDate getActiveCollectionCreationDate() {
-        if(State.activeCollection != null) {
-            return State.activeCollection.createdAt.toLocalDateTime().toLocalDate();
+        if(activeCollection != null) {
+            return activeCollection.createdAt.toLocalDateTime().toLocalDate();
         }
         return null;
     }
 
     static void removeCollection(String collectionId) {
-        for (int i = 0; i < State.collections.size(); i++) {
-            if(State.collections.get(i).id.equals(collectionId)) {
-                State.removePhotosFromCollection(collectionId);
-                State.collections.remove(i);
+        for (int i = 0; i < collections.size(); i++) {
+            if(collections.get(i).id.equals(collectionId)) {
+                removePhotosFromCollection(collectionId);
+                collections.remove(i);
                 break;
             }
         }
     }
 
     static PhotoCollection getActiveCollection() {
-        return State.activeCollection;
+        return activeCollection;
     }
 
     static void setActiveCollection(PhotoCollection collection) {
-        State.activeCollection = collection;
+        activeCollection = collection;
     }
 
     static ArrayList<Photo> getPhotos() {
-        return State.photos;
+        return photos;
     }
 
     static void removePhotosFromCollection(String collectionId) {
-        State.photos = State.photos.stream()
+        photos = photos.stream()
                 .filter(photo -> !photo.collectionIds.contains(collectionId))
                 .collect(toCollection(ArrayList::new));
     }
 
     static ArrayList<Photo> getPhotos(String collectionId) {
-        return State.photos.stream()
+        return photos.stream()
                 .filter(photo -> photo.collectionIds.contains(collectionId))
                 .collect(toCollection(ArrayList::new));
     }
 
-    static Photo addPhoto(String id, File file) {
+    static void addPhoto(String id, File file) {
         try {
             BufferedImage bufferedPhoto = ImageIO.read(file);
             Dimension size = new Dimension(bufferedPhoto.getWidth(), bufferedPhoto.getHeight());
             Photo photo = new Photo(id, size, FileManager.getFileExtension(file.getName()));
-            State.photos.add(photo);
-            return photo;
+            photos.add(photo);
         } catch (IOException error) {
-            JOptionPane.showMessageDialog(State.frame,"Something went wrong");
+            JOptionPane.showMessageDialog(Views.frame,"Something went wrong");
         }
-        return null;
+    }
+
+    public static Photo getActivePhoto() {
+        return activePhoto;
+    }
+
+    public static void setActivePhoto(Photo photo) {
+        activePhoto = photo;
     }
 }

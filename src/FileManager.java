@@ -19,7 +19,7 @@ public class FileManager {
             in.close();
             out.close();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(State.frame,"Something went wrong");
+            JOptionPane.showMessageDialog(Views.frame,"Something went wrong");
             e.printStackTrace();
         }
 

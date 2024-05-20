@@ -6,7 +6,7 @@ public class WrapperView extends JPanel {
     PhotoGridView photoGridView;
 
     WrapperView() {
-        State.wrapperView = this;
+        Views.wrapperView = this;
 
         setLayout(new BorderLayout());
 

@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -12,7 +14,7 @@ public class PhotoGridView extends JPanel {
 
     PhotoGridView() {
         Controllers.photoGridController = new PhotoGridController(this);
-        State.photoGridView = this;
+        Views.photoGridView = this;
 
         setLayout(new BoxLayout (this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, new Color(204,204,204)));
@@ -55,6 +57,11 @@ public class PhotoGridView extends JPanel {
                     Image image = originalIcon.getImage().getScaledInstance(scaledDimension.width, scaledDimension.height, Image.SCALE_SMOOTH);
                     ImageIcon imageIcon = new ImageIcon(image);
                     imageLabel.setIcon(imageIcon);
+                    imageLabel.addMouseListener(new MouseAdapter() {
+                        public void mouseClicked(MouseEvent e) {
+                            Controllers.photoGridController.setActivePhoto(photo);
+                        }
+                    });
                 }
 
                 row.add(imageLabel);

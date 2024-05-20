@@ -14,7 +14,7 @@ public class S30208Leshchenko extends JFrame {
     S30208Leshchenko() {
         super("Photo Browser");
 
-        State.frame = this;
+        Views.frame = this;
         Controllers.asideController = this.asideController;
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);

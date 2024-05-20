@@ -12,7 +12,7 @@ public class AsideView extends JPanel {
     ArrayList<JButton> collectionButtons = new ArrayList<>();
 
     AsideView() {
-        State.asideView = this;
+        Views.asideView = this;
         setPreferredSize(new Dimension(200, 700));
         setLayout(new BoxLayout (this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, new Color(204,204,204)));

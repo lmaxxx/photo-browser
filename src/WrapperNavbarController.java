@@ -25,8 +25,8 @@ public class WrapperNavbarController {
 
         State.removeCollection(State.getActiveCollection().id);
         State.setActiveCollection(null);
-        State.asideView.setCollectionButtons();
-        State.asideView.renderCollectionButtons();
+        Views.asideView.setCollectionButtons();
+        Views.asideView.renderCollectionButtons();
         this.wrapperNavbarView.renderActiveCollectionDetails();
     }
 
@@ -36,8 +36,8 @@ public class WrapperNavbarController {
             File file = this.wrapperNavbarView.fileChooser.getSelectedFile();
             String newPhotoId = FileManager.uploadFile(file);
             State.addPhoto(newPhotoId, file);
-            State.photoGridView.setPhotos();
-            State.photoGridView.renderPhotos();
+            Views.photoGridView.setPhotos();
+            Views.photoGridView.renderPhotos();
         }
     }
 }

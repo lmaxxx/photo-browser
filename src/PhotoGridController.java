@@ -11,7 +11,13 @@ public class PhotoGridController {
     }
 
     void updatePhotoGrid() {
-        State.photoGridView.setPhotos();
-        State.photoGridView.renderPhotos();
+        Views.photoGridView.setPhotos();
+        Views.photoGridView.renderPhotos();
     }
+
+    void setActivePhoto(Photo photo) {
+        State.setActivePhoto(photo);
+    }
+
+//    void
 }
