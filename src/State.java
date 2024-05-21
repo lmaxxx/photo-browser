@@ -16,7 +16,20 @@ final public class State {
     private static ArrayList<Photo> photos = new ArrayList<>();
     private static Photo activePhoto = null;
 
+    private static final String[] tagList = {"Nature", "Art", "Landscape", "Travel", "Sport", "Food", "Tech", "Work", "Family", "Love", "Friends", "Hobby"};
+
     static String appFontName = "Calibri";
+
+    static String[] getTagList() {
+        return tagList;
+    }
+
+    static void addTagsToActivePhoto(int[] tagsIndices) {
+        activePhoto.tags.clear();
+        for (int tagIndex : tagsIndices) {
+            activePhoto.tags.add(tagList[tagIndex]);
+        }
+    }
 
     static PhotoCollection createCollection(String name) {
         PhotoCollection collection = new PhotoCollection(name);
@@ -49,9 +62,7 @@ final public class State {
         activePhoto.collectionIds.clear();
         for (int collectionIndex : collectionIndices) {
             PhotoCollection collection = collections.get(collectionIndex);
-            if (!activePhoto.collectionIds.contains(collection.id)) {
-                activePhoto.collectionIds.add(collection.id);
-            }
+            activePhoto.collectionIds.add(collection.id);
         }
     }
 

@@ -14,7 +14,7 @@ public class PhotoDataController {
         this.photoDataView.closeButton.addActionListener(_ -> this.closeImageEditor());
         this.photoDataView.deleteButton.addActionListener(_ -> this.deletePhoto());
         this.photoDataView.selectCollectionsButton.addActionListener(_ -> this.selectCollectionsForPhoto());
-        this.photoDataView.selectTagsButton.addActionListener(_ -> this.selectCollectionsForPhoto());
+        this.photoDataView.selectTagsButton.addActionListener(_ -> this.selectTagsForPhoto());
     }
 
     void closeImageEditor() {
@@ -41,17 +41,31 @@ public class PhotoDataController {
         int[] selectedIndices = new int[State.getActivePhoto().collectionIds.size()];
 
         for (int i = 0, j = 0; i < State.getCollections().size(); i++) {
-            System.out.println(State.getCollections().get(i).id);
-            System.out.println(State.getActivePhoto().id);
             if(State.getActivePhoto().collectionIds.contains(State.getCollections().get(i).id)) {
                 selectedIndices[j] = i;
                 j++;
             }
         }
-        System.out.println(Arrays.toString(selectedIndices));
 
         list.setSelectedIndices(selectedIndices);
         JOptionPane.showMessageDialog(Views.frame, new JScrollPane(list), "Choose collections for current photo", JOptionPane.INFORMATION_MESSAGE);
         State.addPhotoToCollections(list.getSelectedIndices());
+    }
+
+    void selectTagsForPhoto() {
+        JList list = new JList(State.getTagList());
+        list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        int[] selectedIndices = new int[State.getActivePhoto().tags.size()];
+
+        for (int i = 0, j = 0; i < State.getTagList().length; i++) {
+            if(State.getActivePhoto().tags.contains(State.getTagList()[i])) {
+                selectedIndices[j] = i;
+                j++;
+            }
+        }
+
+        list.setSelectedIndices(selectedIndices);
+        JOptionPane.showMessageDialog(Views.frame, new JScrollPane(list), "Choose tags for current photo", JOptionPane.INFORMATION_MESSAGE);
+        State.addTagsToActivePhoto(list.getSelectedIndices());
     }
 }
