@@ -3,4 +3,5 @@ public class Controllers {
     static WrapperNavbarController wrapperNavbarController;
     static PhotoGridController photoGridController;
     static PhotoEditorController photoEditorController;
+    static PhotoDataController photoDataController;
 }

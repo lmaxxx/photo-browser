@@ -1,6 +1,8 @@
 import java.awt.*;
 
 public class Utils {
+    static String[] tagList = {"Nature", "Art", "Landscape", "Travel", "Sport", "Food", "Tech", "Work", "Family", "Love", "Friends", "Hobby"};
+
     static Dimension getScaledDimension(Dimension imgSize, Dimension boundary) {
         int originalWidth = imgSize.width;
         int originalHeight = imgSize.height;

@@ -10,6 +10,7 @@ public class Photo {
     Timestamp createdAt;
     String extension;
     ArrayList<String> collectionIds = new ArrayList<>();
+//    String[] tags = ;
 
     public Photo(String id, Dimension size, String extension) {
         this.id = id;

@@ -45,6 +45,16 @@ final public class State {
         }
     }
 
+    static void addPhotoToCollections(int[] collectionIndices) {
+        activePhoto.collectionIds.clear();
+        for (int collectionIndex : collectionIndices) {
+            PhotoCollection collection = collections.get(collectionIndex);
+            if (!activePhoto.collectionIds.contains(collection.id)) {
+                activePhoto.collectionIds.add(collection.id);
+            }
+        }
+    }
+
     static PhotoCollection getActiveCollection() {
         return activeCollection;
     }
@@ -57,16 +67,25 @@ final public class State {
         return photos;
     }
 
+    static ArrayList<Photo> getPhotos(String collectionId) {
+        return photos.stream()
+                .filter(photo -> photo.collectionIds.contains(collectionId))
+                .collect(toCollection(ArrayList::new));
+    }
+
     static void removePhotosFromCollection(String collectionId) {
         photos = photos.stream()
                 .filter(photo -> !photo.collectionIds.contains(collectionId))
                 .collect(toCollection(ArrayList::new));
     }
 
-    static ArrayList<Photo> getPhotos(String collectionId) {
-        return photos.stream()
-                .filter(photo -> photo.collectionIds.contains(collectionId))
+    static void removePhoto() {
+        photos = photos.stream()
+                .filter(photo -> !photo.id.equals(activePhoto.id))
                 .collect(toCollection(ArrayList::new));
+
+        File file = new File("photos/" + activePhoto.id + "." + activePhoto.extension);
+        FileManager.deleteFile(file);
     }
 
     static void addPhoto(String id, File file) {

@@ -9,6 +9,8 @@ public class PhotoEditorController {
         State.setActivePhoto(photo);
         Views.mainView.render();
         Views.photoEditorView.render();
+        Views.photoDataView.render();
+        Views.photoDataView.updatePhotoData();
     }
 
     void removeActivePhoto() {

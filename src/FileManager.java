@@ -26,6 +26,10 @@ public class FileManager {
         return uuid;
     }
 
+    static void deleteFile(File file) {
+        file.delete();
+    }
+
     static String getFileExtension(String fileName) {
         int index = fileName.lastIndexOf('.');
         if(index > 0) {

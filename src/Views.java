@@ -7,4 +7,5 @@ public class Views {
     static WrapperNavbarView wrapperNavbarView;
     static PhotoGridView photoGridView;
     static PhotoEditorView photoEditorView;
+    static PhotoDataView photoDataView;
 }
