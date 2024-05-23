@@ -15,6 +15,7 @@ public class PhotoDataController {
         this.photoDataView.deleteButton.addActionListener(_ -> this.deletePhoto());
         this.photoDataView.selectCollectionsButton.addActionListener(_ -> this.selectCollectionsForPhoto());
         this.photoDataView.selectTagsButton.addActionListener(_ -> this.selectTagsForPhoto());
+        this.photoDataView.saveButton.addActionListener(_ -> this.saveInputs());
     }
 
     void closeImageEditor() {
@@ -67,5 +68,11 @@ public class PhotoDataController {
         list.setSelectedIndices(selectedIndices);
         JOptionPane.showMessageDialog(Views.frame, new JScrollPane(list), "Choose tags for current photo", JOptionPane.INFORMATION_MESSAGE);
         State.addTagsToActivePhoto(list.getSelectedIndices());
+    }
+
+    void saveInputs() {
+        Photo activePhoto = State.getActivePhoto();
+        activePhoto.description = this.photoDataView.descriptionInput.getText();
+        activePhoto.title = this.photoDataView.titleInput.getText();
     }
 }

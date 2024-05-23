@@ -36,6 +36,8 @@ public class PhotoDataView extends JPanel{
     void updatePhotoData() {
         extensionLabel.setText("Extension: " + State.getActivePhoto().extension);
         sizeLabel.setText("Size: " + State.getActivePhoto().size.width + "x" + State.getActivePhoto().size.height);
+        titleInput.setText(State.getActivePhoto().title);
+        descriptionInput.setText(State.getActivePhoto().description);
         revalidate();
         repaint();
     }
