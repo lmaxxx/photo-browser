@@ -1,14 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.concurrent.Flow;
-
-import static java.lang.Integer.MAX_VALUE;
 
 public class PhotoGridView extends JPanel {
     JPanel grid;

@@ -34,6 +34,7 @@ public class WrapperNavbarController {
         int response = this.wrapperNavbarView.fileChooser.showSaveDialog(null);
         if (response == JFileChooser.APPROVE_OPTION) {
             File file = this.wrapperNavbarView.fileChooser.getSelectedFile();
+
             String newPhotoId = FileManager.uploadFile(file);
             State.addPhoto(newPhotoId, file);
             Views.photoGridView.setPhotos();

@@ -1,9 +1,5 @@
-import javax.sound.sampled.Line;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class PhotoEditorView extends JPanel {
     JLabel imageLabel;
