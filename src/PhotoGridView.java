@@ -9,8 +9,6 @@ public class PhotoGridView extends JPanel {
 
     PhotoGridView() {
         Views.photoGridView = this;
-
-//        setLayout(new FlowLayout());
         setLayout(new BoxLayout (this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, new Color(204,204,204)));
 
@@ -37,37 +35,9 @@ public class PhotoGridView extends JPanel {
         photoRenderThread.start();
     }
 
-    void renderEmptyLayout() {
-        Dimension gridCellSize = new Dimension(315, 220);
-        this.grid.removeAll();
-        int rows = (int)Math.ceil(this.photos.size() / 3.0);
-        for (int i = 0; i < 3; i++) {
-            JPanel row = new JPanel( new GridLayout(1, 3, 10, 0));
-            if(i == 2) {
-                row.setBorder(new EmptyBorder(0,0,10,0));
-            }
-
-            for (int j = 0; j < 3; j++) {
-                Photo photo = this.photos.get(i * 3 + j);
-                JLabel imageLabel = new JLabel();
-                imageLabel.setPreferredSize(gridCellSize);
-
-//                row.setAlignmentY(Component.TOP_ALIGNMENT);
-                row.add(imageLabel);
-            }
-
-            this.grid.add(row);
-            this.grid.revalidate();
-            this.grid.repaint();
-        }
-    }
-
     void initComponents() {
         this.grid = new JPanel();
-//        this.grid.setMaximumSize(new Dimension(980, MAX_VALUE));
-//        this.grid.setPreferredSize(new Dimension(980, 1000));
         this.grid.setLayout(new BoxLayout(this.grid, BoxLayout.Y_AXIS));
-//        this.grid.setLayout(new FlowLayout());
         Controllers.photoGridController = new PhotoGridController(this);
     }
 
@@ -75,6 +45,5 @@ public class PhotoGridView extends JPanel {
         JScrollPane scrollPane = new JScrollPane(grid);
         scrollPane.setBorder(new EmptyBorder(0,0,0,0));
         add(scrollPane);
-//        add(grid);
     }
 }

@@ -30,6 +30,7 @@ public class AsideController {
         Controllers.photoEditorController.removeActivePhoto();
         Views.wrapperNavbarView.renderActiveCollectionDetails();
 
+        Controllers.searchBarController.cancelFilter();
         Controllers.photoGridController.updatePhotoGrid();
     }
 
@@ -37,6 +38,7 @@ public class AsideController {
         State.setActiveCollection(null);
         Views.wrapperNavbarView.renderActiveCollectionDetails();
         Controllers.photoEditorController.removeActivePhoto();
+        Controllers.searchBarController.cancelFilter();
         Controllers.photoGridController.updatePhotoGrid();
     }
 
@@ -44,6 +46,7 @@ public class AsideController {
         State.setActiveCollection(collection);
         Controllers.photoEditorController.removeActivePhoto();
         Views.wrapperNavbarView.renderActiveCollectionDetails();
+        Controllers.searchBarController.cancelFilter();
         Controllers.photoGridController.updatePhotoGrid();
     }
 }

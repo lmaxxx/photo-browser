@@ -6,7 +6,7 @@ public class PhotoGridController {
     }
 
     void updatePhotoGrid() {
-        Views.photoGridView.setPhotos();
-        Views.photoGridView.renderPhotos();
+        this.photoGridView.setPhotos();
+        this.photoGridView.renderPhotos();
     }
 }

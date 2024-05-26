@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WrapperView extends JPanel {
-    WrapperNavbarView wrapperNavbarView;
-    PhotoGridView photoGridView;
+    WrapperNavbarView wrapperNavbarView = new WrapperNavbarView();
+    PhotoGridView photoGridView = new PhotoGridView();
 
     WrapperView() {
         Views.wrapperView = this;
@@ -15,8 +15,6 @@ public class WrapperView extends JPanel {
     }
 
     void initComponents() {
-        this.wrapperNavbarView = new WrapperNavbarView();
-        this.photoGridView = new PhotoGridView();
         Controllers.wrapperNavbarController = new WrapperNavbarController(this.wrapperNavbarView);
     }
 

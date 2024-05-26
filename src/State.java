@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static java.util.stream.Collectors.toCollection;
 
@@ -14,7 +16,9 @@ final public class State {
     private static PhotoCollection activeCollection = null;
 
     private static ArrayList<Photo> photos = new ArrayList<>();
+    private static ArrayList<Photo> filteredPhotos = new ArrayList<>();
     private static Photo activePhoto = null;
+    static boolean showFilteredPhotos = false;
 
     private static final String[] tagList = {"Nature", "Art", "Landscape", "Travel", "Sport", "Food", "Tech", "Work", "Family", "Love", "Friends", "Hobby"};
 
@@ -75,13 +79,14 @@ final public class State {
     }
 
     static ArrayList<Photo> getPhotos() {
-        return photos;
+        return showFilteredPhotos ? filteredPhotos : photos;
     }
 
     static ArrayList<Photo> getPhotos(String collectionId) {
-        return photos.stream()
-                .filter(photo -> photo.collectionIds.contains(collectionId))
-                .collect(toCollection(ArrayList::new));
+        ArrayList<Photo> possiblePhotos = showFilteredPhotos ? filteredPhotos : photos;
+        return possiblePhotos.stream()
+                        .filter(photo -> photo.collectionIds.contains(collectionId))
+                        .collect(toCollection(ArrayList::new));
     }
 
     static void removePhotosFromCollection(String collectionId) {
@@ -110,11 +115,36 @@ final public class State {
         }
     }
 
-    public static Photo getActivePhoto() {
+    static Photo getActivePhoto() {
         return activePhoto;
     }
 
-    public static void setActivePhoto(Photo photo) {
+    static void setActivePhoto(Photo photo) {
         activePhoto = photo;
+    }
+
+    static void filterPhotos(String filterOption, String query) {
+        switch (filterOption) {
+            case "title": {
+                System.out.println("Title");
+                break;
+            }
+            case "description": {
+                break;
+            }
+            case "tags": {
+                String[] tags = query.split(", ");
+                System.out.println(Arrays.toString(tags));
+                filteredPhotos = photos.stream().filter(photo -> photo.tags.containsAll(List.of(tags))).collect(toCollection(ArrayList::new));
+                break;
+            }
+            case "date": {
+                break;
+            }
+        }
+    }
+
+    static void clearFilteredPhotos() {
+        filteredPhotos.clear();
     }
 }

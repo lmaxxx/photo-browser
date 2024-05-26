@@ -28,6 +28,8 @@ public class WrapperNavbarController {
         Views.asideView.setCollectionButtons();
         Views.asideView.renderCollectionButtons();
         this.wrapperNavbarView.renderActiveCollectionDetails();
+        Controllers.searchBarController.cancelFilter();
+//        Controllers.photoGridController.updatePhotoGrid();
     }
 
     void choosePhoto() {
@@ -37,8 +39,8 @@ public class WrapperNavbarController {
 
             String newPhotoId = FileManager.uploadFile(file);
             State.addPhoto(newPhotoId, file);
-            Views.photoGridView.setPhotos();
-            Views.photoGridView.renderPhotos();
+            Controllers.searchBarController.cancelFilter();
+            Controllers.photoGridController.updatePhotoGrid();
         }
     }
 }

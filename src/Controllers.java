@@ -4,4 +4,5 @@ public class Controllers {
     static PhotoGridController photoGridController;
     static PhotoEditorController photoEditorController;
     static PhotoDataController photoDataController;
+    static SearchBarController searchBarController;
 }
