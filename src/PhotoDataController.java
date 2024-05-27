@@ -55,6 +55,7 @@ public class PhotoDataController {
         list.setSelectedIndices(selectedIndices);
         JOptionPane.showMessageDialog(Views.frame, new JScrollPane(list), "Choose collections for current photo", JOptionPane.INFORMATION_MESSAGE);
         State.addPhotoToCollections(list.getSelectedIndices());
+        FileManager.saveObjectsToFile(State.getPhotos(), "photos.ser");
     }
 
     void selectTagsForPhoto() {
@@ -72,11 +73,13 @@ public class PhotoDataController {
         list.setSelectedIndices(selectedIndices);
         JOptionPane.showMessageDialog(Views.frame, new JScrollPane(list), "Choose tags for current photo", JOptionPane.INFORMATION_MESSAGE);
         State.addTagsToActivePhoto(list.getSelectedIndices());
+        FileManager.saveObjectsToFile(State.getPhotos(), "photos.ser");
     }
 
     void saveInputs() {
         Photo activePhoto = State.getActivePhoto();
         activePhoto.description = this.photoDataView.descriptionInput.getText();
         activePhoto.title = this.photoDataView.titleInput.getText();
+        FileManager.saveObjectsToFile(State.getPhotos(), "photos.ser");
     }
 }
