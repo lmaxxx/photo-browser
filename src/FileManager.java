@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class FileManager {
@@ -36,5 +37,52 @@ public class FileManager {
             return fileName.substring(index + 1);
         }
         return null;
+    }
+
+    static void saveObjectsToFile(ArrayList<? extends Serializable> objects, String fileName) {
+        try {
+            FileOutputStream FOP = new FileOutputStream(fileName);
+            ObjectOutputStream OOS = new ObjectOutputStream(FOP);
+            OOS.writeObject(objects);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    static ArrayList<PhotoCollection> readCollections() {
+        ArrayList<PhotoCollection> collections = null;
+
+        if(!new File("collections.ser").exists()) {
+            return new ArrayList<>();
+        }
+
+        try (
+                FileInputStream fileIn = new FileInputStream("collections.ser");
+                ObjectInputStream in = new ObjectInputStream(fileIn)
+        ) {
+            collections = (ArrayList<PhotoCollection>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return collections;
+    }
+
+    static ArrayList<Photo> readPhotos() {
+        ArrayList<Photo> photos = null;
+
+        if(!new File("photos.ser").exists()) {
+            return new ArrayList<>();
+        }
+
+        try (
+                FileInputStream fileIn = new FileInputStream("photos.ser");
+                ObjectInputStream in = new ObjectInputStream(fileIn)
+        ) {
+            photos = (ArrayList<Photo>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return photos;
     }
 }

@@ -9,4 +9,9 @@ public class PhotoGridController {
         this.photoGridView.setPhotos();
         this.photoGridView.renderPhotos();
     }
+
+    void loadPhotos() {
+        State.setPhotos(FileManager.readPhotos());
+        this.updatePhotoGrid();
+    }
 }

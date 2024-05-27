@@ -1,8 +1,9 @@
 import java.awt.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-public class Photo {
+public class Photo implements Serializable {
     String id;
     String title;
     String description;

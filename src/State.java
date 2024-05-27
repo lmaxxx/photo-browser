@@ -38,7 +38,16 @@ final public class State {
     static PhotoCollection createCollection(String name) {
         PhotoCollection collection = new PhotoCollection(name);
         collections.add(collection);
+        FileManager.saveObjectsToFile(collections, "collections.ser");
         return collection;
+    }
+
+    static void setCollections(ArrayList<PhotoCollection> collections) {
+        State.collections = collections;
+    }
+
+    static void setPhotos(ArrayList<Photo> photos) {
+        State.photos = photos;
     }
 
     static ArrayList<PhotoCollection> getCollections() {
@@ -60,6 +69,7 @@ final public class State {
                 break;
             }
         }
+        FileManager.saveObjectsToFile(collections, "collections.ser");
     }
 
     static void addPhotoToCollections(int[] collectionIndices) {

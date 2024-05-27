@@ -41,6 +41,7 @@ public class WrapperNavbarController {
             State.addPhoto(newPhotoId, file);
             Controllers.searchBarController.cancelFilter();
             Controllers.photoGridController.updatePhotoGrid();
+            FileManager.saveObjectsToFile(State.getPhotos(), "photos.ser");
         }
     }
 }

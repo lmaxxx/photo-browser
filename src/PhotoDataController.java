@@ -31,6 +31,7 @@ public class PhotoDataController {
         if (choice != 0) return;
 
         State.removePhoto();
+        FileManager.saveObjectsToFile(State.getPhotos(), "photos.ser");
         closeImageEditor();
     }
 

@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-public class PhotoCollection {
+public class PhotoCollection implements Serializable {
     String name;
     String id;
     Timestamp createdAt;

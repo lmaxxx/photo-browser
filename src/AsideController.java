@@ -25,7 +25,6 @@ public class AsideController {
         this.asideView.setCollectionButtons();
         this.asideView.collectionButtons.getLast().addActionListener(_ -> this.setActiveCollection(newCollection));
 
-
         this.asideView.renderCollectionButtons();
         Controllers.photoEditorController.removeActivePhoto();
         Views.wrapperNavbarView.renderActiveCollectionDetails();
@@ -48,5 +47,11 @@ public class AsideController {
         Views.wrapperNavbarView.renderActiveCollectionDetails();
         Controllers.searchBarController.cancelFilter();
         Controllers.photoGridController.updatePhotoGrid();
+    }
+
+    void loadCollections() {
+        State.setCollections(FileManager.readCollections());
+        this.asideView.setCollectionButtons();
+        this.asideView.renderCollectionButtons();
     }
 }

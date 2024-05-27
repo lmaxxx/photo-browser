@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 //Main frame
 public class S30208Leshchenko extends JFrame {
@@ -25,9 +26,11 @@ public class S30208Leshchenko extends JFrame {
         add(asideView, BorderLayout.WEST);
         add(mainView, BorderLayout.EAST);
 
+        Controllers.asideController.loadCollections();
+        Controllers.photoGridController.loadPhotos();
+
         setLocationRelativeTo(null);
         pack();
-
         setVisible(true);
     }
 }
