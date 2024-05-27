@@ -29,12 +29,14 @@ public class WrapperNavbarView extends JPanel {
     }
 
     void renderActiveCollectionDetails() {
-        String collectionNameText = State.getActiveCollection() != null ?
-                State.getActiveCollection().name + " (" + State.getActiveCollectionCreationDate().toString() + ")"
+        PhotoCollection collection = State.getActiveCollection();
+
+        String collectionNameText = collection != null ?
+                collection.name + " (" + Utils.formatDate(collection.createdAt) + ")"
                 : "All photos";
         this.collectionNameLabel.setText(collectionNameText);
 
-        if(State.getActiveCollection() == null) {
+        if(collection == null) {
             remove(this.deleteCollectionButton);
         } else {
             add(this.deleteCollectionButton, BorderLayout.EAST);

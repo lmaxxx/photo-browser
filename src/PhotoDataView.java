@@ -1,11 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class PhotoDataView extends JPanel{
     JLabel titleLabel = new JLabel("Title: ");
     JLabel descriptionLabel = new JLabel("Description: ");
     JLabel extensionLabel = new JLabel();
     JLabel sizeLabel = new JLabel();
+    JLabel dateLabel = new JLabel();
     JTextField titleInput = new JTextField();
     JTextArea descriptionInput = new JTextArea();
     JButton saveButton = new JButton("Save");
@@ -27,6 +30,7 @@ public class PhotoDataView extends JPanel{
         descriptionInput.setAutoscrolls(true);
         descriptionInput.setPreferredSize(new Dimension(200, 200));
         sizeLabel.setPreferredSize(new Dimension(230, 20));
+        dateLabel.setPreferredSize(new Dimension(230, 20));
         extensionLabel.setPreferredSize(new Dimension(230, 20));
         selectCollectionsButton.setPreferredSize(new Dimension(230, 20));
         selectTagsButton.setPreferredSize(new Dimension(230, 20));
@@ -37,6 +41,7 @@ public class PhotoDataView extends JPanel{
         sizeLabel.setText("Size: " + State.getActivePhoto().size.width + "x" + State.getActivePhoto().size.height);
         titleInput.setText(State.getActivePhoto().title);
         descriptionInput.setText(State.getActivePhoto().description);
+        dateLabel.setText(Utils.formatDateTime(State.getActivePhoto().createdAt));
         revalidate();
         repaint();
     }
@@ -48,6 +53,7 @@ public class PhotoDataView extends JPanel{
         add(descriptionInput);
         add(extensionLabel);
         add(sizeLabel);
+        add(dateLabel);
         add(selectCollectionsButton);
         add(selectTagsButton);
         add(saveButton);

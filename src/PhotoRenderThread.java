@@ -28,7 +28,8 @@ public class PhotoRenderThread extends Thread{
             }
 
             for (int j = 0; j < 3; j++) {
-                Photo photo = this.photos.get(i * 3 + j);
+                // ternary operator prevents errors in console
+                Photo photo = this.photos.get(i * 3 + j) == null ? null : this.photos.get(i * 3 + j);
                 JLabel imageLabel = new JLabel();
                 imageLabel.setPreferredSize(gridCellSize);
 

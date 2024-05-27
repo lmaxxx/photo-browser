@@ -10,7 +10,7 @@ public class FileManager {
         int cursor;
         String uuid = UUID.randomUUID().toString();
 
-        try{
+        try {
             in = new FileInputStream(file);
             out = new FileOutputStream("photos/" + uuid + "." + FileManager.getFileExtension(file.getName()));
             while((cursor = in.read())!=-1){

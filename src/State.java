@@ -54,14 +54,14 @@ final public class State {
         return collections;
     }
 
-    static LocalDate getActiveCollectionCreationDate() {
-        if(activeCollection != null) {
-            return activeCollection.createdAt.toLocalDateTime().toLocalDate();
-        }
-        return null;
-    }
-
     static void removeCollection(String collectionId) {
+        photos = photos.stream().map(photo -> {
+            if(photo.collectionIds.contains(collectionId)) {
+                photo.collectionIds.remove(photo.collectionIds.indexOf(collectionId));
+            }
+            return photo;
+        }).collect(toCollection(ArrayList::new));
+
         for (int i = 0; i < collections.size(); i++) {
             if(collections.get(i).id.equals(collectionId)) {
                 removePhotosFromCollection(collectionId);
@@ -136,20 +136,24 @@ final public class State {
     static void filterPhotos(String filterOption, String query) {
         switch (filterOption) {
             case "title": {
-                System.out.println("Title");
                 break;
             }
             case "description": {
                 break;
             }
             case "tags": {
-                String[] tags = query.split(", ");
-                System.out.println(Arrays.toString(tags));
-                filteredPhotos = photos.stream().filter(photo -> photo.tags.containsAll(List.of(tags))).collect(toCollection(ArrayList::new));
+                String[] tags = query.trim().split(", ");
+                filteredPhotos = photos
+                        .stream()
+                        .filter(photo -> photo.tags.containsAll(List.of(tags)))
+                        .collect(toCollection(ArrayList::new));
                 break;
             }
             case "date": {
-                break;
+                String dateString = query.trim();
+                filteredPhotos = photos.stream()
+                        .filter(photo -> Utils.formatDate(photo.createdAt).equals(dateString))
+                        .collect(toCollection(ArrayList::new));
             }
         }
     }

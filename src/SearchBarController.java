@@ -21,8 +21,7 @@ public class SearchBarController {
         );
         State.showFilteredPhotos = true;
         this.searchBarView.updateSearchBar();
-        Views.photoGridView.setPhotos();
-        Views.photoGridView.renderPhotos();
+        Controllers.photoGridController.updatePhotoGrid();
     }
 
     void cancelFilter() {

@@ -29,7 +29,7 @@ public class WrapperNavbarController {
         Views.asideView.renderCollectionButtons();
         this.wrapperNavbarView.renderActiveCollectionDetails();
         Controllers.searchBarController.cancelFilter();
-//        Controllers.photoGridController.updatePhotoGrid();
+        Controllers.photoGridController.updatePhotoGrid();
     }
 
     void choosePhoto() {

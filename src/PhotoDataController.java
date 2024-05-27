@@ -18,7 +18,12 @@ public class PhotoDataController {
 
     void closeImageEditor() {
         Controllers.photoEditorController.removeActivePhoto();
-        Controllers.photoGridController.updatePhotoGrid();
+
+        if(State.showFilteredPhotos) {
+            Controllers.searchBarController.search();
+        } else {
+            Controllers.photoGridController.updatePhotoGrid();
+        }
     }
 
     void deletePhoto() {
