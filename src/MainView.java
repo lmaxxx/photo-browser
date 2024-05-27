@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class MainView extends JPanel{
+public class MainView extends JPanel {
     SearchBarView searchBarView;
     WrapperView wrapperView;
     PhotoEditorView photoEditorView;
@@ -23,7 +23,7 @@ public class MainView extends JPanel{
 
     void render() {
         removeAll();
-        if(State.getActivePhoto() == null) {
+        if (State.getActivePhoto() == null) {
             add(this.wrapperView, BorderLayout.CENTER);
             add(this.searchBarView, BorderLayout.NORTH);
         } else {

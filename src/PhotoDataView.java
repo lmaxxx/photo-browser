@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
-public class PhotoDataView extends JPanel{
+public class PhotoDataView extends JPanel {
     JLabel titleLabel = new JLabel("Title: ");
     JLabel descriptionLabel = new JLabel("Description: ");
     JLabel extensionLabel = new JLabel();

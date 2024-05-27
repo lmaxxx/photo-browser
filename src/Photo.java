@@ -18,7 +18,7 @@ public class Photo implements Serializable {
         this.size = size;
         this.createdAt = new Timestamp(System.currentTimeMillis());
         this.extension = extension;
-        if(State.getActiveCollection() != null) {
+        if (State.getActiveCollection() != null) {
             this.collectionIds.add(State.getActiveCollection().id);
         }
     }
@@ -33,6 +33,7 @@ public class Photo implements Serializable {
                 ", createdAt=" + createdAt +
                 ", extension='" + extension + '\'' +
                 ", collectionIds=" + collectionIds +
+                ", tags=" + tags +
                 '}';
     }
 }

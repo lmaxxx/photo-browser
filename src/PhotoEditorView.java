@@ -17,7 +17,7 @@ public class PhotoEditorView extends JPanel {
     void initComponents() {
         Controllers.photoEditorController = new PhotoEditorController(this);
         this.imageLabel = new JLabel();
-        this.imageLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, new Color(204,204,204)));
+        this.imageLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, new Color(204, 204, 204)));
         this.imageLabel.setPreferredSize(new Dimension(750, 600));
     }
 

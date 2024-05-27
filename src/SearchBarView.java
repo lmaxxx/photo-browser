@@ -3,7 +3,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class SearchBarView extends JPanel{
+public class SearchBarView extends JPanel {
     JLabel searchByLabel = new JLabel("Search by: ");
     JComboBox dropDownMenu = new JComboBox(new String[]{"title", "description", "tags", "date"});
     JButton searchButton = new JButton("Search");
@@ -14,7 +14,7 @@ public class SearchBarView extends JPanel{
     SearchBarView() {
         Views.searchBarView = this;
         setPreferredSize(new Dimension(1000, 50));
-        Border rightSideBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(204,204,204));
+        Border rightSideBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(204, 204, 204));
         setBorder(rightSideBorder);
 
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -29,7 +29,7 @@ public class SearchBarView extends JPanel{
     }
 
     void updateSearchBar() {
-        if(State.showFilteredPhotos) {
+        if (State.showFilteredPhotos) {
             add(cancelButton);
         } else {
             remove(cancelButton);

@@ -19,7 +19,7 @@ public class PhotoDataController {
     void closeImageEditor() {
         Controllers.photoEditorController.removeActivePhoto();
 
-        if(State.showFilteredPhotos) {
+        if (State.showFilteredPhotos) {
             Controllers.searchBarController.search();
         } else {
             Controllers.photoGridController.updatePhotoGrid();
@@ -46,7 +46,7 @@ public class PhotoDataController {
         int[] selectedIndices = new int[State.getActivePhoto().collectionIds.size()];
 
         for (int i = 0, j = 0; i < State.getCollections().size(); i++) {
-            if(State.getActivePhoto().collectionIds.contains(State.getCollections().get(i).id)) {
+            if (State.getActivePhoto().collectionIds.contains(State.getCollections().get(i).id)) {
                 selectedIndices[j] = i;
                 j++;
             }
@@ -64,7 +64,7 @@ public class PhotoDataController {
         int[] selectedIndices = new int[State.getActivePhoto().tags.size()];
 
         for (int i = 0, j = 0; i < State.getTagList().length; i++) {
-            if(State.getActivePhoto().tags.contains(State.getTagList()[i])) {
+            if (State.getActivePhoto().tags.contains(State.getTagList()[i])) {
                 selectedIndices[j] = i;
                 j++;
             }

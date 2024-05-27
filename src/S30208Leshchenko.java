@@ -1,16 +1,29 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+
+/*
+PROJECT STRUCTURE
+S30208Leshchenko
+├── AsideView
+└── MainView
+    ├── SearchBarView
+    ├── WrapperView
+    │   ├── WrapperNavbarView
+    │   └── PhotoGridView
+    │       └── PhotoDataView
+    └── PhotoEditorView
+
+Each View Components that performs special operations has its own Controller.
+There is a class State that stores all important data for the whole application.
+Classes Views and Controllers store components respectively, in order to share them
+among each other.
+*/
 
 //Main frame
 public class S30208Leshchenko extends JFrame {
     AsideView asideView = new AsideView();
     AsideController asideController = new AsideController(asideView);
     MainView mainView = new MainView();
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(S30208Leshchenko::new);
-    }
 
     S30208Leshchenko() {
         super("Photo Browser");
@@ -32,5 +45,9 @@ public class S30208Leshchenko extends JFrame {
         setLocationRelativeTo(null);
         pack();
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(S30208Leshchenko::new);
     }
 }

@@ -20,7 +20,7 @@ public class WrapperNavbarView extends JPanel {
     void initComponents() {
         this.collectionNameLabel = new JLabel(State.getActiveCollection() != null ? State.getActiveCollection().name : "All photos");
         this.collectionNameLabel.setFont(new Font(State.appFontName, Font.PLAIN, 30));
-        this.collectionNameLabel.setBorder(new EmptyBorder(10,10,10,0));
+        this.collectionNameLabel.setBorder(new EmptyBorder(10, 10, 10, 0));
         this.deleteCollectionButton = new JButton("Delete");
         this.importPhotosButton = new JButton("Import Photos");
         this.fileChooser = new JFileChooser();
@@ -36,7 +36,7 @@ public class WrapperNavbarView extends JPanel {
                 : "All photos";
         this.collectionNameLabel.setText(collectionNameText);
 
-        if(collection == null) {
+        if (collection == null) {
             remove(this.deleteCollectionButton);
         } else {
             add(this.deleteCollectionButton, BorderLayout.EAST);

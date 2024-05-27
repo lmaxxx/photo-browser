@@ -16,7 +16,7 @@ public class SearchBarController {
 
     void search() {
         State.filterPhotos(
-                (String)this.searchBarView.dropDownMenu.getItemAt(this.searchBarView.dropDownMenu.getSelectedIndex()),
+                (String) this.searchBarView.dropDownMenu.getItemAt(this.searchBarView.dropDownMenu.getSelectedIndex()),
                 this.searchBarView.input.getText()
         );
         State.showFilteredPhotos = true;

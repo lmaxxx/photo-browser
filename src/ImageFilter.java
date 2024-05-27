@@ -17,16 +17,12 @@ class ImageFilter extends FileFilter {
 
         String extension = getExtension(f);
         if (extension != null) {
-            if (extension.equals(TIFF) ||
+            return extension.equals(TIFF) ||
                     extension.equals(TIF) ||
                     extension.equals(GIF) ||
                     extension.equals(JPEG) ||
                     extension.equals(JPG) ||
-                    extension.equals(PNG)) {
-                return true;
-            } else {
-                return false;
-            }
+                    extension.equals(PNG);
         }
         return false;
     }
@@ -41,8 +37,8 @@ class ImageFilter extends FileFilter {
         String s = f.getName();
         int i = s.lastIndexOf('.');
 
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
+        if (i > 0 && i < s.length() - 1) {
+            ext = s.substring(i + 1).toLowerCase();
         }
         return ext;
     }

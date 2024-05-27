@@ -5,7 +5,6 @@ public class AsideController {
 
     AsideController(AsideView asideView) {
         this.asideView = asideView;
-
         setActions();
     }
 

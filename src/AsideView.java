@@ -13,13 +13,10 @@ public class AsideView extends JPanel {
     AsideView() {
         Views.asideView = this;
         setPreferredSize(new Dimension(200, 700));
-        setLayout(new BoxLayout (this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, new Color(204,204,204)));
-
-//        this.updateScrollCollectionPane();
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, new Color(204, 204, 204)));
         this.initComponents();
         this.render();
-
     }
 
     void initComponents() {
@@ -29,7 +26,7 @@ public class AsideView extends JPanel {
         this.collectionListPanel = new JPanel();
 
         this.titleLabel.setFont(new Font(State.appFontName, Font.PLAIN, 25));
-        this.titleLabel.setBorder(new EmptyBorder(10,0,10,0));
+        this.titleLabel.setBorder(new EmptyBorder(10, 0, 10, 0));
         this.titleLabel.setAlignmentX(CENTER_ALIGNMENT);
         this.creteCollectionButton.setAlignmentX(CENTER_ALIGNMENT);
         this.allPhotosButton.setAlignmentX(CENTER_ALIGNMENT);
@@ -38,7 +35,7 @@ public class AsideView extends JPanel {
 
     void setCollectionButtons() {
         this.collectionButtons.clear();
-        for(PhotoCollection collection : State.getCollections()) {
+        for (PhotoCollection collection : State.getCollections()) {
             JButton newCollectionButton = new JButton(collection.name);
             newCollectionButton.setAlignmentX(CENTER_ALIGNMENT);
             newCollectionButton.addActionListener(_ -> Controllers.asideController.setActiveCollection(collection));
@@ -48,7 +45,7 @@ public class AsideView extends JPanel {
 
     void renderCollectionButtons() {
         this.collectionListPanel.removeAll();
-        for(JButton button : this.collectionButtons) {
+        for (JButton button : this.collectionButtons) {
             this.collectionListPanel.add(button);
         }
         this.collectionListPanel.revalidate();
@@ -61,7 +58,7 @@ public class AsideView extends JPanel {
         add(this.creteCollectionButton);
 
         JScrollPane scrollPane = new JScrollPane(this.collectionListPanel);
-        scrollPane.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, new Color(204,204,204)));
+        scrollPane.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, new Color(204, 204, 204)));
         add(scrollPane);
     }
 }

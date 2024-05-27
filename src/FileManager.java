@@ -13,14 +13,14 @@ public class FileManager {
         try {
             in = new FileInputStream(file);
             out = new FileOutputStream("photos/" + uuid + "." + FileManager.getFileExtension(file.getName()));
-            while((cursor = in.read())!=-1){
+            while ((cursor = in.read()) != -1) {
                 out.write(cursor);
             }
 
             in.close();
             out.close();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(Views.frame,"Something went wrong");
+            JOptionPane.showMessageDialog(Views.frame, "Something went wrong");
             e.printStackTrace();
         }
 
@@ -33,7 +33,7 @@ public class FileManager {
 
     static String getFileExtension(String fileName) {
         int index = fileName.lastIndexOf('.');
-        if(index > 0) {
+        if (index > 0) {
             return fileName.substring(index + 1);
         }
         return null;
@@ -53,7 +53,7 @@ public class FileManager {
     static ArrayList<PhotoCollection> readCollections() {
         ArrayList<PhotoCollection> collections = null;
 
-        if(!new File("collections.ser").exists()) {
+        if (!new File("collections.ser").exists()) {
             return new ArrayList<>();
         }
 
@@ -71,7 +71,7 @@ public class FileManager {
     static ArrayList<Photo> readPhotos() {
         ArrayList<Photo> photos = null;
 
-        if(!new File("photos.ser").exists()) {
+        if (!new File("photos.ser").exists()) {
             return new ArrayList<>();
         }
 

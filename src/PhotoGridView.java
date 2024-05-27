@@ -9,8 +9,8 @@ public class PhotoGridView extends JPanel {
 
     PhotoGridView() {
         Views.photoGridView = this;
-        setLayout(new BoxLayout (this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, new Color(204,204,204)));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, new Color(204, 204, 204)));
 
         initComponents();
         render();
@@ -43,7 +43,7 @@ public class PhotoGridView extends JPanel {
 
     void render() {
         JScrollPane scrollPane = new JScrollPane(grid);
-        scrollPane.setBorder(new EmptyBorder(0,0,0,0));
+        scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         add(scrollPane);
     }
 }
