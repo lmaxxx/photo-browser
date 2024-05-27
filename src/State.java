@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.toCollection;
 
@@ -136,9 +138,23 @@ final public class State {
     static void filterPhotos(String filterOption, String query) {
         switch (filterOption) {
             case "title": {
+                filteredPhotos = photos
+                        .stream()
+                        .filter(photo -> {
+                            String[] words = query.trim().split("\\W+");
+                            return Utils.textContains(photo.title, words);
+                        })
+                        .collect(toCollection(ArrayList::new));
                 break;
             }
             case "description": {
+                filteredPhotos = photos
+                        .stream()
+                        .filter(photo -> {
+                            String[] words = query.trim().split("\\W+");
+                            return Utils.textContains(photo.description, words);
+                        })
+                        .collect(toCollection(ArrayList::new));
                 break;
             }
             case "tags": {
