@@ -32,6 +32,7 @@ public class PhotoRenderThread extends Thread{
                 Photo photo = this.photos.get(i * 3 + j) == null ? null : this.photos.get(i * 3 + j);
                 JLabel imageLabel = new JLabel();
                 imageLabel.setPreferredSize(gridCellSize);
+                imageLabel.setHorizontalAlignment(JLabel.CENTER);
 
                 if(photo != null) {
                     ImageIcon originalIcon = new ImageIcon(String.format("photos/%s.%s", photo.id, photo.extension));
@@ -44,6 +45,8 @@ public class PhotoRenderThread extends Thread{
                             Controllers.photoEditorController.setActivePhoto(photo);
                         }
                     });
+                    imageLabel.setOpaque(true);
+                    imageLabel.setBackground(new Color(232, 233, 232));
                 }
 
                 row.add(imageLabel);
