@@ -38,7 +38,7 @@ public class AsideView extends JPanel {
         for (PhotoCollection collection : State.getCollections()) {
             JButton newCollectionButton = new JButton(collection.name);
             newCollectionButton.setAlignmentX(CENTER_ALIGNMENT);
-            newCollectionButton.addActionListener(_ -> Controllers.asideController.setActiveCollection(collection));
+            newCollectionButton.addActionListener(e -> Controllers.asideController.setActiveCollection(collection));
             this.collectionButtons.add(newCollectionButton);
         }
     }

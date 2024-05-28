@@ -9,8 +9,8 @@ public class AsideController {
     }
 
     void setActions() {
-        this.asideView.creteCollectionButton.addActionListener(_ -> this.createNewCollection());
-        this.asideView.allPhotosButton.addActionListener(_ -> this.removeActiveCollection());
+        this.asideView.creteCollectionButton.addActionListener(e -> this.createNewCollection());
+        this.asideView.allPhotosButton.addActionListener(e -> this.removeActiveCollection());
     }
 
     void createNewCollection() {
@@ -22,7 +22,7 @@ public class AsideController {
         State.setActiveCollection(newCollection);
 
         this.asideView.setCollectionButtons();
-        this.asideView.collectionButtons.getLast().addActionListener(_ -> this.setActiveCollection(newCollection));
+        this.asideView.collectionButtons.getLast().addActionListener(e -> this.setActiveCollection(newCollection));
 
         this.asideView.renderCollectionButtons();
         Controllers.photoEditorController.removeActivePhoto();

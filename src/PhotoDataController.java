@@ -9,11 +9,11 @@ public class PhotoDataController {
     }
 
     void setActions() {
-        this.photoDataView.closeButton.addActionListener(_ -> this.closeImageEditor());
-        this.photoDataView.deleteButton.addActionListener(_ -> this.deletePhoto());
-        this.photoDataView.selectCollectionsButton.addActionListener(_ -> this.selectCollectionsForPhoto());
-        this.photoDataView.selectTagsButton.addActionListener(_ -> this.selectTagsForPhoto());
-        this.photoDataView.saveButton.addActionListener(_ -> this.saveInputs());
+        this.photoDataView.closeButton.addActionListener(e -> this.closeImageEditor());
+        this.photoDataView.deleteButton.addActionListener(e -> this.deletePhoto());
+        this.photoDataView.selectCollectionsButton.addActionListener(e -> this.selectCollectionsForPhoto());
+        this.photoDataView.selectTagsButton.addActionListener(e -> this.selectTagsForPhoto());
+        this.photoDataView.saveButton.addActionListener(e -> this.saveInputs());
     }
 
     void closeImageEditor() {

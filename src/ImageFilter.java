@@ -5,9 +5,8 @@ class ImageFilter extends FileFilter {
     public final static String JPEG = "jpeg";
     public final static String JPG = "jpg";
     public final static String GIF = "gif";
-    public final static String TIFF = "tiff";
-    public final static String TIF = "tif";
     public final static String PNG = "png";
+    public final static String WEBP = "webp";
 
     @Override
     public boolean accept(File f) {
@@ -17,8 +16,7 @@ class ImageFilter extends FileFilter {
 
         String extension = getExtension(f);
         if (extension != null) {
-            return extension.equals(TIFF) ||
-                    extension.equals(TIF) ||
+            return extension.equals(WEBP) ||
                     extension.equals(GIF) ||
                     extension.equals(JPEG) ||
                     extension.equals(JPG) ||

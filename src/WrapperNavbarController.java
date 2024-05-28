@@ -10,8 +10,8 @@ public class WrapperNavbarController {
     }
 
     void setActions() {
-        this.wrapperNavbarView.deleteCollectionButton.addActionListener(_ -> this.deleteCollection());
-        this.wrapperNavbarView.importPhotosButton.addActionListener(_ -> this.choosePhoto());
+        this.wrapperNavbarView.deleteCollectionButton.addActionListener(e -> this.deleteCollection());
+        this.wrapperNavbarView.importPhotosButton.addActionListener(e -> this.choosePhoto());
     }
 
     void deleteCollection() {

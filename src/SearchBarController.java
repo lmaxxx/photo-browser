@@ -7,8 +7,8 @@ public class SearchBarController {
     }
 
     void setActions() {
-        this.searchBarView.searchButton.addActionListener(_ -> this.search());
-        this.searchBarView.cancelButton.addActionListener(_ -> {
+        this.searchBarView.searchButton.addActionListener(e -> this.search());
+        this.searchBarView.cancelButton.addActionListener(e -> {
             this.cancelFilter();
             Controllers.photoGridController.updatePhotoGrid();
         });
